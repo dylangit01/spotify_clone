@@ -5,6 +5,7 @@ import TrackSearch from '../search/TrackSearch';
 import { Container, Form } from 'react-bootstrap';
 import SpotifyWebApi from 'spotify-web-api-node';
 import axios from 'axios';
+import PlayerBtn from '../PlayerBtn/PlayerBtn'
 
 const spotifyApi = new SpotifyWebApi({
 	clientId: '2baa05a85a284865a4cdde82479ff3a9',
@@ -24,20 +25,20 @@ export default function Dashboard({ code }) {
 		setLyrics('');
 	}
 
-	useEffect(() => {
-		if (!playingTrack) return;
+	// useEffect(() => {
+	// 	if (!playingTrack) return;
 
-		axios
-			.get('http://localhost:3001/lyrics', {
-				params: {
-					track: playingTrack.title,
-					artist: playingTrack.artist,
-				},
-			})
-			.then((res) => {
-				setLyrics(res.data.lyrics);
-			});
-	}, [playingTrack]);
+	// 	axios
+	// 		.get('http://localhost:3001/lyrics', {
+	// 			params: {
+	// 				track: playingTrack.title,
+	// 				artist: playingTrack.artist,
+	// 			},
+	// 		})
+	// 		.then((res) => {
+	// 			setLyrics(res.data.lyrics);
+	// 		});
+	// }, [playingTrack]);
 
 	useEffect(() => {
 		if (!accessToken) return;
@@ -91,7 +92,11 @@ export default function Dashboard({ code }) {
 				)}
 			</div>
 			<div>
-				<Player accessToken={accessToken} trackUri={playingTrack?.uri} />
+				{/* <Player accessToken={accessToken} trackUri={playingTrack?.uri} /> */}
+				{playingTrack?.preview_url && 
+					<PlayerBtn trackPreview={playingTrack?.preview_url} />
+				}
+				
 			</div>
 		</Container>
 	);
