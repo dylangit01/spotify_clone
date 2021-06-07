@@ -8,7 +8,7 @@ import axios from 'axios';
 import PlayerBtn from '../PlayerBtn/PlayerBtn'
 
 const spotifyApi = new SpotifyWebApi({
-	clientId: '2baa05a85a284865a4cdde82479ff3a9',
+	clientId: '5ca23191c3a04e9c99be48a4ab6c81dc',
 });
 
 export default function Dashboard({ code }) {
@@ -96,7 +96,6 @@ export default function Dashboard({ code }) {
 				{playingTrack?.preview_url && 
 					<PlayerBtn trackPreview={playingTrack?.preview_url} />
 				}
-				
 			</div>
 		</Container>
 	);
